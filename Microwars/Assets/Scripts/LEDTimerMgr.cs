@@ -12,6 +12,7 @@ public class LEDTimerMgr : MonoBehaviour{
     private int textCount=0;
     public int timeLeft = 1;
     private bool showTime=true;
+    public bool _pressed = false;
 
     void Start()
     {
@@ -36,30 +37,16 @@ public class LEDTimerMgr : MonoBehaviour{
 
     IEnumerator Counter()
     {
-        timeLeft--;
-        if (showTime)
-            ledText.text = ParseTime(timeLeft);
-        yield return new WaitForSeconds(1);
-        if (timeLeft != 0)
-            StartCoroutine("Counter");
-    }
-
-
-    public void AddTime()
-    {
-        timeLeft += 10;
-        if (timeLeft > 60)
+        if (!_pressed)
         {
-            timeLeft = 60;
+            timeLeft--;
+            if (showTime)
+                ledText.text = ParseTime(timeLeft);
+            yield return new WaitForSeconds(1);
+            if (timeLeft != 0)
+                StartCoroutine("Counter");
         }
-        if (timeLeft == 10)
-        {
-            ledText.text = ParseTime(timeLeft);
-            StartCoroutine("Counter");
-        }
-        ledText.text = ParseTime(timeLeft);
     }
-
 
     string ParseTime(int time)
     {

@@ -4,9 +4,9 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class MoveCameraRightMgr : MoveCameraMgr
+public class MoveCameraRightMgr : ButtonPressed
 {
-    public override void moveCamera()
+    public override void OnButtonPressed()
     {
 
         if (Camera.main.transform.position.x < maxPositionR.transform.position.x)

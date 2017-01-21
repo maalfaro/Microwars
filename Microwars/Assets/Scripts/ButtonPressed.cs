@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public abstract class MoveCameraMgr : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
+public abstract class ButtonPressed : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 {
 
 
     public float offset = 1f;
     public GameObject maxPositionL;
     public GameObject maxPositionR;
-    bool _pressed = false;
+    protected bool _pressed = false;
 
 
     public void OnPointerDown(PointerEventData eventData)
@@ -19,7 +19,7 @@ public abstract class MoveCameraMgr : MonoBehaviour, IPointerDownHandler, IPoint
 
     }
 
-    public void OnPointerUp(PointerEventData eventData)
+    public virtual void OnPointerUp(PointerEventData eventData)
     {
         _pressed = false;
     }
@@ -28,9 +28,9 @@ public abstract class MoveCameraMgr : MonoBehaviour, IPointerDownHandler, IPoint
     {
         if (!_pressed)
             return;
-        moveCamera();
+        OnButtonPressed();
 
     }
 
-    public abstract void moveCamera();
+    public abstract void OnButtonPressed();
 }
