@@ -14,8 +14,13 @@ public class KarateWaypointMgr : WaypointMgr
 
     IEnumerator Wait(GameObject player)
     {
-        yield return new WaitForSeconds(2);
-        player.gameObject.SendMessage("goToNextState", SendMessageOptions.DontRequireReceiver);
 
+        player.GetComponent<Animator>().runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>("Animators/Katas");
+        player.GetComponent<Animator>().enabled = true;
+        yield return new WaitForSeconds(5);
+        player.GetComponent<Animator>().enabled = false;
+        player.gameObject.SendMessage("goToNextState", SendMessageOptions.DontRequireReceiver);
+        player.GetComponent<JuanDCharacterMgr>().StopPlayKatas();
+        player.GetComponent<JuanDCharacterMgr>().PlayFideosListos();
     }
 }

@@ -6,6 +6,8 @@ using UnityEngine.UI;
 public class JuanDCharacterMgr : MonoBehaviour {
 
     private string[] PATH = new string[] { "EntraCocina", "Noodles", "Agua", "RoundTable1", "RoundTable2", "Microwave", "RoundTable2", "RoundTable1", "Karate", "RoundTable1", "RoundTable2", "Microwave", "RoundTable3" };
+    [SerializeField]
+    private AudioClip[] sounds = new AudioClip[] { };
 
     [SerializeField]
     private int state = -1;
@@ -21,6 +23,7 @@ public class JuanDCharacterMgr : MonoBehaviour {
     void Start () {
         waypoints = GameObject.FindGameObjectWithTag("Waypoints");
         goToNextState();
+        StartCoroutine("PlayFirstAudio");
     }
 	
 	// Update is called once per frame
@@ -32,11 +35,14 @@ public class JuanDCharacterMgr : MonoBehaviour {
 
     public void goToNextState()
     {
+
         state++;
-        print(PATH[state]);
-        isMoving = true;
-        targetPosition =waypoints.transform.FindChild(PATH[state]).transform.position;
-        ChangeImage();
+        if(state< PATH.Length) { 
+            print(PATH[state]);
+            isMoving = true;
+            targetPosition =waypoints.transform.FindChild(PATH[state]).transform.position;
+            ChangeImage();
+        }
     }
 
     public void ChangeImage()
@@ -56,6 +62,11 @@ public class JuanDCharacterMgr : MonoBehaviour {
 
     }
 
+    public void SetImage(string path)
+    {
+        GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>(path);
+    }
+
     public void ShowNoodles(bool show)
     {
         transform.FindChild("Noodles").gameObject.SetActive(show);
@@ -71,5 +82,35 @@ public class JuanDCharacterMgr : MonoBehaviour {
     {
         GameObject.FindGameObjectWithTag("Noodles").SetActive(false);
     }
-    
+
+    IEnumerator PlayFirstAudio()
+    {
+        yield return new WaitForSeconds(4);
+        GetComponent<AudioSource>().PlayOneShot(sounds[0]);
+    }
+
+
+    public void PlayFideosAlMicro()
+    {
+        GetComponent<AudioSource>().PlayOneShot(sounds[1]);
+    }
+
+    public void PlayKatas()
+    {
+        GetComponent<AudioSource>().PlayOneShot(sounds[2]);
+    }
+
+    public void StopPlayKatas()
+    {
+        GetComponent<AudioSource>().Stop();
+    }
+
+    public void PlayFideosListos()
+    {
+        GetComponent<AudioSource>().PlayOneShot(sounds[3]);
+    }
+    public void PlayLTF()
+    {
+        GetComponent<AudioSource>().PlayOneShot(sounds[4]);
+    }
 }

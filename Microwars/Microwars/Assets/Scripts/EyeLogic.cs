@@ -12,6 +12,7 @@ public class EyeLogic : MonoBehaviour {
     private void Start()
     {
         image = GetComponent<Image>();
+        setSprite();
     }
 
     private void Update()

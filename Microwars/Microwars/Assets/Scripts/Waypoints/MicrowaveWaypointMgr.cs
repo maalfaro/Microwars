@@ -20,6 +20,10 @@ public class MicrowaveWaypointMgr : WaypointMgr
 
     IEnumerator Wait(GameObject player)
     {
+        if (!isFirst)
+        {
+            player.GetComponent<JuanDCharacterMgr>().PlayLTF();
+        }
         yield return new WaitForSeconds(2);
         player.gameObject.SendMessage("ShowNoodles", !isFirst, SendMessageOptions.DontRequireReceiver);
         player.gameObject.SendMessage("goToNextState", SendMessageOptions.DontRequireReceiver);
