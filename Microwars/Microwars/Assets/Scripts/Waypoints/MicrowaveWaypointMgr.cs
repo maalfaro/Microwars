@@ -47,7 +47,7 @@ public class MicrowaveWaypointMgr : WaypointMgr
             }
             player.GetComponent<Animator>().enabled = false;
             if(!openButtonMgr.isVisible)
-                openButtonMgr.ShowBackground();
+                openButtonMgr.CloseDoor();
             player.gameObject.SendMessage("ShowNoodles", !isFirst, SendMessageOptions.DontRequireReceiver);
             player.gameObject.SendMessage("goToNextState", SendMessageOptions.DontRequireReceiver);
             noodlesMicrowave.gameObject.SetActive(isFirst);
@@ -61,7 +61,6 @@ public class MicrowaveWaypointMgr : WaypointMgr
             openButtonMgr.ShowBackground();
         player.GetComponent<Animator>().runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>("Animators/Marta-metiendoTe");
         player.GetComponent<Animator>().enabled = true;
-
         yield return new WaitForSeconds(2);
         if (!MartaCharacterMgr.DEAD)
         {

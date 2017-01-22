@@ -26,6 +26,7 @@ public class JuanDCharacterMgr : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
+        JuanDCharacterMgr.DEAD = false;
         waypoints = GameObject.FindGameObjectWithTag("Waypoints");
         goToNextState();
         StartCoroutine("PlayFirstAudio");
@@ -144,7 +145,7 @@ public class JuanDCharacterMgr : MonoBehaviour {
     IEnumerator Win()
     {
         yield return new WaitForSeconds(4);
-        SceneManager.LoadScene("WinStageScene");
+        SceneManager.LoadScene("WinGameScene");
     }
 
     IEnumerator RemoveText(int time)

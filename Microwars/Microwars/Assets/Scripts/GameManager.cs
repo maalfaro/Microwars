@@ -37,6 +37,6 @@ public class GameManager : MonoBehaviour {
     {
         yield return new WaitForSeconds(2);
         //Cargar escena perder
-        SceneManager.LoadScene("LoseScene");
+        SceneManager.LoadScene("LostGameScene");
     }
 }

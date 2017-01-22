@@ -21,6 +21,11 @@ public class LoadSceneOnClick : MonoBehaviour
         }
     }
 
+    public void LoadMenu()
+    {
+        SceneManager.LoadScene(0);
+    }
+
     IEnumerator waitForAnimationToEnd(int sceneIndex)
     {
         yield return new WaitForSeconds(animationDuration);

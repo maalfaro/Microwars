@@ -27,6 +27,7 @@ public class MartaCharacterMgr : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        MartaCharacterMgr.DEAD = false;
         waypoints = GameObject.FindGameObjectWithTag("Waypoints");
         goToNextState();
         StartCoroutine("PlayFirstAudio");
@@ -147,8 +148,8 @@ public class MartaCharacterMgr : MonoBehaviour
 
     IEnumerator Win()
     {
-        yield return new WaitForSeconds(10);
-        SceneManager.LoadScene("WinGameScene");
+        yield return new WaitForSeconds(6);
+        SceneManager.LoadScene("WinStageScene");
     }
 
     IEnumerator RemoveText(int time)

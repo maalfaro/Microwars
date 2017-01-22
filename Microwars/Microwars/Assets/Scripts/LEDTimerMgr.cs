@@ -6,7 +6,12 @@ using UnityEngine.UI;
 public class LEDTimerMgr : MonoBehaviour{
 
     [SerializeField]
-    public string[] wordsList = new string[] { "Kill", "Pepe", "With", "Duck" };
+    public string[][] wordsList = new string[][] { new string[] { "Kill", "Pepe", "With", "Duck" },
+                                                    new string[] { "DAN ", "THE ", "MAN " },
+                                                    new string[] { "HELP", " ME "},
+                                                    new string[] { "TAKE", " ME ", "ONE ", "BEER" }};
+    [SerializeField]
+    private string[] selectedWordList;
 
     private Text ledText;
     private int textCount=0;
@@ -18,18 +23,21 @@ public class LEDTimerMgr : MonoBehaviour{
     {
         ledText = transform.FindChild("Text").GetComponent<Text>();
         //StartCoroutine("Counter");
+        selectedWordList = wordsList[Random.Range(0, wordsList.Length)];
     }
 
     public void ShowNewText()
     {
-        if (textCount > 3)
+        if (textCount > selectedWordList.Length - 1)
         {
             ledText.text = ParseTime(timeLeft);
             showTime = true;
             textCount = 0;
-        }else
+            selectedWordList = wordsList[Random.Range(0, wordsList.Length)];
+        }
+        else
         {
-            ledText.text = wordsList[textCount++];
+            ledText.text = selectedWordList[textCount++];
             showTime = false;
         }
     }

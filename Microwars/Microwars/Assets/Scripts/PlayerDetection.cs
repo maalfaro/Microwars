@@ -14,6 +14,7 @@ public class PlayerDetection : MonoBehaviour {
 
     private void Start()
     {
+        lossMultiplier = 0;
         eye = GameObject.FindGameObjectWithTag("Eye");
     }
 
@@ -43,7 +44,7 @@ public class PlayerDetection : MonoBehaviour {
             else
             {
                 // Incrementamos el multiplicador y cuando pase el enfriamiento lo decrementamos
-                lossMultiplier++;
+                //lossMultiplier++;
                 StartCoroutine("decrementLoss");
             }
         }
@@ -52,7 +53,7 @@ public class PlayerDetection : MonoBehaviour {
     IEnumerator decrementLoss()
     {
         yield return new WaitForSeconds(5f);
-        lossMultiplier--;
+        //lossMultiplier--;
     }
 
 }

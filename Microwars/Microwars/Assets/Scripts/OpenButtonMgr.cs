@@ -8,6 +8,7 @@ public class OpenButtonMgr : MonoBehaviour {
     public bool isVisible = true;
     public PowerButtonMgr powerButtonMgr;
     public SangresitaScript sangresitaScript;
+    public PlayerDetection playerDetection;
 
     // Use this for initialization
     void Start () {
@@ -43,7 +44,7 @@ public class OpenButtonMgr : MonoBehaviour {
         if (isVisible) {
             if (GameObject.FindGameObjectWithTag("Marta") != null)
             {
-                if (GameObject.FindGameObjectWithTag("Marta").GetComponent<MartaCharacterMgr>().state == 5)
+                if (GameObject.FindGameObjectWithTag("Marta").GetComponent<MartaCharacterMgr>().state == 5 && !playerDetection.detected)
                 {
                         MartaCharacterMgr.DEAD = true;
                         sangresitaScript.enabled = true;
@@ -53,6 +54,11 @@ public class OpenButtonMgr : MonoBehaviour {
                 }
             }
         }
+        backgroundMicroWave.SetActive(isVisible = !isVisible);
+    }
+
+    public void CloseDoor()
+    {
         backgroundMicroWave.SetActive(isVisible = !isVisible);
     }
 
