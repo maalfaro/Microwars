@@ -8,7 +8,7 @@ using System.Linq;
 public class PowerButtonMgr : MonoBehaviour {
 
     public Sprite[] powerWheelSprites = new Sprite[6];
-    private int counter = 1;
+    public int counter = 1;
 
     public void Rotate()
     {

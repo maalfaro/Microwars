@@ -5,12 +5,13 @@ using UnityEngine.UI;
 
 public class JuanDCharacterMgr : MonoBehaviour {
 
+    public static bool DEAD = false;
     private string[] PATH = new string[] { "EntraCocina", "Noodles", "Agua", "RoundTable1", "RoundTable2", "Microwave", "RoundTable2", "RoundTable1", "Karate", "RoundTable1", "RoundTable2", "Microwave", "RoundTable3" };
     [SerializeField]
     private AudioClip[] sounds = new AudioClip[] { };
 
     [SerializeField]
-    private int state = -1;
+    public int state = -1;
     [SerializeField]
     private GameObject waypoints;
     private Vector3 targetPosition;
@@ -38,7 +39,6 @@ public class JuanDCharacterMgr : MonoBehaviour {
 
         state++;
         if(state< PATH.Length) { 
-            print(PATH[state]);
             isMoving = true;
             targetPosition =waypoints.transform.FindChild(PATH[state]).transform.position;
             ChangeImage();
@@ -112,5 +112,10 @@ public class JuanDCharacterMgr : MonoBehaviour {
     public void PlayLTF()
     {
         GetComponent<AudioSource>().PlayOneShot(sounds[4]);
+    }
+
+    public void PlayMuerte()
+    {
+        GetComponent<AudioSource>().PlayOneShot(sounds[6]);
     }
 }

@@ -28,7 +28,6 @@ public class PlayerDetection : MonoBehaviour {
 
     // LLamar a esto al utilizar el interfaz
     void msg_microwaveActing(int loss){
-        print ("Funciono");
         if (detected) {
             //El jugador pierde
             GameManager.instance.loseGame();
