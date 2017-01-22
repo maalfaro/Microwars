@@ -9,7 +9,18 @@ public class ExitWavepointMgr : WaypointMgr {
     {
         if (other.gameObject.CompareTag("JuanD"))
         {
-            SceneManager.LoadScene("LEDTimeMgr");
+            SceneManager.LoadScene("JuanDemanScene");
         }
+
+        if (other.gameObject.CompareTag("Marta"))
+        {
+            StartCoroutine("WaitMarta");
+        }
+    }
+
+    IEnumerator WaitMarta()
+    {
+        yield return new WaitForSeconds(5);
+        SceneManager.LoadScene("MartaScene");
     }
 }

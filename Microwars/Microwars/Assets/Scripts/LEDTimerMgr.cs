@@ -17,7 +17,7 @@ public class LEDTimerMgr : MonoBehaviour{
     void Start()
     {
         ledText = transform.FindChild("Text").GetComponent<Text>();
-        StartCoroutine("Counter");
+        //StartCoroutine("Counter");
     }
 
     public void ShowNewText()
@@ -32,6 +32,12 @@ public class LEDTimerMgr : MonoBehaviour{
             ledText.text = wordsList[textCount++];
             showTime = false;
         }
+    }
+
+    public void SetTime(int timeLeft)
+    {
+        this.timeLeft = timeLeft;
+        StartCoroutine("Counter");
     }
 
 

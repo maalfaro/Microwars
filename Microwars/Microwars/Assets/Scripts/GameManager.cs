@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour {
 
     public static GameManager instance;
-
+    public GameObject tePillaron;
     void Awake()
     {
         //If we don't currently have a game control...
@@ -25,7 +25,18 @@ public class GameManager : MonoBehaviour {
         //Activar el Canvas de juego perdido
         //Sonar
         //Volver al Menu
-        //if(JuanDCharacterMgr.DEAD!=false)
+        if (!JuanDCharacterMgr.DEAD ||  GameObject.FindGameObjectWithTag("JuanD").GetComponent<JuanDCharacterMgr>().state != 11)
+        {
+            tePillaron.SetActive(true);
+            StartCoroutine("Loser");
+        }
             //SceneManager.LoadScene(2);
+    }
+
+    IEnumerator Loser()
+    {
+        yield return new WaitForSeconds(2);
+        //Cargar escena perder
+        SceneManager.LoadScene("LoseScene");
     }
 }

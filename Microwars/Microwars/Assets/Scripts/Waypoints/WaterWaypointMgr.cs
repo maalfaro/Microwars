@@ -13,6 +13,11 @@ public class WaterWaypointMgr : WaypointMgr
         {
             StartCoroutine("GetWater", other.gameObject);
         }
+
+        if (other.gameObject.CompareTag("Marta"))
+        {
+            StartCoroutine("GetWaterMarta", other.gameObject);
+        }
     }
 
     IEnumerator GetWater(GameObject player)
@@ -27,6 +32,16 @@ public class WaterWaypointMgr : WaypointMgr
         player.gameObject.SendMessage("goToNextState", SendMessageOptions.DontRequireReceiver); 
         player.GetComponent<JuanDCharacterMgr>().SetImage("Images/JuanD_walk_micro");
         player.GetComponent<JuanDCharacterMgr>().PlayFideosAlMicro();
+    }
+
+    IEnumerator GetWaterMarta(GameObject player)
+    {
+        yield return new WaitForSeconds(1);
+        waterSprite.SetActive(true);
+        yield return new WaitForSeconds(2);
+        waterSprite.SetActive(false);
+        player.gameObject.SendMessage("goToNextState", SendMessageOptions.DontRequireReceiver);
+        player.GetComponent<MartaCharacterMgr>().PlayFideosAlMicro();
     }
 
 }

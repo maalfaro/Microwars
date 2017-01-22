@@ -15,24 +15,28 @@ public class TimeButtonMgr : ButtonPressed {
 
     void Update()
     {
-        ledTimeMgr._pressed = _pressed;
-        if (_pressed) {
-            return;
+        if (ledTimeMgr.timeLeft > 0) {
+            ledTimeMgr._pressed = _pressed;
+            if (_pressed) {
+                return;
+            }
+            timer += Time.deltaTime;
+            if (timer > 2.5f)
+            {
+                OnButtonPressed();
+                timer =0.0f;
+            }
         }
-        timer += Time.deltaTime;
-        if (timer > 2.5f)
-        {
-            OnButtonPressed();
-            timer =0.0f;
-        }
-
     }
 
     public override void OnPointerUp(PointerEventData eventData)
     {
-        _pressed = false;
-        ledTimeMgr._pressed = false;
-        ledTimeMgr.StartCoroutine("Counter");
+        if (ledTimeMgr.timeLeft > 0)
+        {
+            _pressed = false;
+            ledTimeMgr._pressed = false;
+            ledTimeMgr.StartCoroutine("Counter");
+        }
     }
 
     public override void OnButtonPressed()

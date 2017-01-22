@@ -1,9 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
-using System.Linq;
 
 public class PowerButtonMgr : MonoBehaviour {
 
@@ -21,8 +19,3 @@ public class PowerButtonMgr : MonoBehaviour {
 
 }
 
-enum PowerButtonTypes
-{
-
-    STATE_100=0, STATE_200 = 1, STATE_300 = 2, STATE_400 = 3, STATE_500 = 4, STATE_GRILL = 5
-}

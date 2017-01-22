@@ -25,7 +25,10 @@ public class MenuSceneManager : MonoBehaviour {
     // Use this for initialization
     void Start () {
         controles = GameObject.FindGameObjectWithTag("Controles");
-        controles.SetActive(false);
+        if (controles)
+        {
+            controles.SetActive(false);
+        }
 
         canvas = GameObject.FindGameObjectWithTag("Canvas");
         canvas.SetActive(false);

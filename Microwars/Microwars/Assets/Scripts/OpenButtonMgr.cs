@@ -35,13 +35,30 @@ public class OpenButtonMgr : MonoBehaviour {
                         GameObject.FindGameObjectWithTag("JuanD").GetComponent<JuanDCharacterMgr>().PlayMuerte();
                         GameObject.FindGameObjectWithTag("JuanD").GetComponent<JuanDCharacterMgr>().Muerte();
                     }
-                    else
-                    {
-                        //TODO FAILED
-                    }
+                    
+                }
+            }
+        }
+
+        if (isVisible) {
+            if (GameObject.FindGameObjectWithTag("Marta") != null)
+            {
+                if (GameObject.FindGameObjectWithTag("Marta").GetComponent<MartaCharacterMgr>().state == 5)
+                {
+                        MartaCharacterMgr.DEAD = true;
+                        sangresitaScript.enabled = true;
+                        GameObject.FindGameObjectWithTag("Marta").GetComponent<MartaCharacterMgr>().PlayMuerte();
+                        GameObject.FindGameObjectWithTag("Marta").GetComponent<MartaCharacterMgr>().Muerte();
+                        StartCoroutine("Blood");
                 }
             }
         }
         backgroundMicroWave.SetActive(isVisible = !isVisible);
+    }
+
+    IEnumerator Blood()
+    {
+        yield return new WaitForSeconds(2.5f);
+        sangresitaScript.Blood();
     }
 }

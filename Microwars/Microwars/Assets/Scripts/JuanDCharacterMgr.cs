@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class JuanDCharacterMgr : MonoBehaviour {
 
@@ -19,6 +20,9 @@ public class JuanDCharacterMgr : MonoBehaviour {
 
     [SerializeField]
     private PlayerDetection playerDetection;
+
+    [SerializeField]
+    private TextManager textManager;
 
     // Use this for initialization
     void Start () {
@@ -87,41 +91,65 @@ public class JuanDCharacterMgr : MonoBehaviour {
     {
         yield return new WaitForSeconds(4);
         GetComponent<AudioSource>().PlayOneShot(sounds[0]);
+        textManager.setTextGui(0);
+        StartCoroutine("RemoveText",4);
     }
 
 
     public void PlayFideosAlMicro()
     {
         GetComponent<AudioSource>().PlayOneShot(sounds[1]);
+        textManager.setTextGui(1);
+        StartCoroutine("RemoveText", 7);
     }
 
     public void PlayKatas()
     {
         GetComponent<AudioSource>().PlayOneShot(sounds[2]);
+        textManager.setTextGui(2);
     }
 
     public void StopPlayKatas()
     {
         GetComponent<AudioSource>().Stop();
+        textManager.RemoveText();
     }
 
     public void PlayFideosListos()
     {
         GetComponent<AudioSource>().PlayOneShot(sounds[3]);
+        textManager.setTextGui(3);
+        StartCoroutine("RemoveText", 3);
     }
     public void PlayLTF()
     {
         GetComponent<AudioSource>().PlayOneShot(sounds[4]);
+        textManager.setTextGui(4);
+        StartCoroutine("RemoveText", 4);
     }
 
     public void PlayMuerte()
     {
         GetComponent<AudioSource>().PlayOneShot(sounds[6]);
+        textManager.setTextGui(5);
+        StartCoroutine("RemoveText", 3.5f);
     }
 
     public void Muerte()
     {
         GetComponent<Animator>().runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>("Animators/JuanDemanMuerte");
+        StartCoroutine("Win");
+    }
 
+    IEnumerator Win()
+    {
+        yield return new WaitForSeconds(4);
+        SceneManager.LoadScene("WinStageScene");
+    }
+
+    IEnumerator RemoveText(int time)
+    {
+        yield return new WaitForSeconds(time);
+        textManager.RemoveText();
     }
 }
