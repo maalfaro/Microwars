@@ -17,7 +17,8 @@ public class NoodlesWaypointMgr : WaypointMgr
     IEnumerator GetNoodles(GameObject player)
     {
         yield return new WaitForSeconds(1);
-        GameObject.FindGameObjectWithTag("Noodles").SetActive(false);
+        player.GetComponent<Animator>().enabled = true;
+        player.GetComponent<JuanDCharacterMgr>().ChangeImage();
         yield return new WaitForSeconds(1);
         player.gameObject.SendMessage("ShowNoodles", true, SendMessageOptions.DontRequireReceiver);
         player.gameObject.SendMessage("goToNextState", SendMessageOptions.DontRequireReceiver);

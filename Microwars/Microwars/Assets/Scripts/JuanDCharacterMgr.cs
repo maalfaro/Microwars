@@ -14,8 +14,11 @@ public class JuanDCharacterMgr : MonoBehaviour {
     private Vector3 targetPosition;
     private bool isMoving = false;
 
-	// Use this for initialization
-	void Start () {
+    [SerializeField]
+    private PlayerDetection playerDetection;
+
+    // Use this for initialization
+    void Start () {
         waypoints = GameObject.FindGameObjectWithTag("Waypoints");
         goToNextState();
     }
@@ -36,17 +39,19 @@ public class JuanDCharacterMgr : MonoBehaviour {
         ChangeImage();
     }
 
-    private void ChangeImage()
+    public void ChangeImage()
     {
         if(transform.position.z> waypoints.transform.FindChild(PATH[state]).transform.position.z)
         {
             //TODO Front image
             GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Images/JuanD_front");
+            playerDetection.detected = true;
         }
         else
         {
             //TODO Back image
             GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Images/JuanD_back");
+            playerDetection.detected = false;
         }
 
     }
@@ -57,5 +62,14 @@ public class JuanDCharacterMgr : MonoBehaviour {
     }
 
 
+    public void HideAnimator()
+    {
+        GetComponent<Animator>().enabled = false;
+    }
 
+    public void HideNoodles()
+    {
+        GameObject.FindGameObjectWithTag("Noodles").SetActive(false);
+    }
+    
 }
