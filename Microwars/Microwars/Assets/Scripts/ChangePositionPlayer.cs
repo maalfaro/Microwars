@@ -32,14 +32,11 @@ public class ChangePositionPlayer : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        print("EstadoActual antes de la colision "+ personaje.estadoActual);
 
         
-        if (other.tag == "Player" && personaje.estadoActual == nextPos -1) {
-            personaje.estadoActual = nextPos;
-            //Estamos en la pos 1 vamos a la 2
-            other.SendMessage("moveCharacter", nextPos);
-           
+        if (other.CompareTag("JuanD")  || other.CompareTag("Marta") || other.CompareTag("Heznito")) {
+            other.SendMessage("goToNextState");
+    
         }
     }
 }
