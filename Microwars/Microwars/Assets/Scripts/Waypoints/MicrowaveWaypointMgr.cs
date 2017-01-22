@@ -23,27 +23,24 @@ public class MicrowaveWaypointMgr : WaypointMgr
 
     IEnumerator Wait(GameObject player)
     {
-
-        openButtonMgr.ShowBackground();
+        if (openButtonMgr.isVisible)
+            openButtonMgr.ShowBackground();
         player.GetComponent<Animator>().runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>("Animators/RecogiendoRamen");
         player.GetComponent<Animator>().enabled = true;
-        if (!isFirst)
-        {
-            player.GetComponent<JuanDCharacterMgr>().PlayLTF();
-        }
-
+        
         yield return new WaitForSeconds(2);
-
         if (!JuanDCharacterMgr.DEAD) {
+            if (!isFirst)
+            {
+                player.GetComponent<JuanDCharacterMgr>().PlayLTF();
+            }
             player.GetComponent<Animator>().enabled = false;
-            openButtonMgr.ShowBackground();
+            if(!openButtonMgr.isVisible)
+                openButtonMgr.ShowBackground();
             player.gameObject.SendMessage("ShowNoodles", !isFirst, SendMessageOptions.DontRequireReceiver);
             player.gameObject.SendMessage("goToNextState", SendMessageOptions.DontRequireReceiver);
             noodlesMicrowave.gameObject.SetActive(isFirst);
             isFirst = !isFirst;
-        }else
-        {
-
         }
     }
 }

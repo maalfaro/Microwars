@@ -25,7 +25,7 @@ public class GameManager : MonoBehaviour {
         //Activar el Canvas de juego perdido
         //Sonar
         //Volver al Menu
-        print("Has perdido, MENDRUGO");
-        SceneManager.LoadScene(2);
+        //if(JuanDCharacterMgr.DEAD!=false)
+            //SceneManager.LoadScene(2);
     }
 }

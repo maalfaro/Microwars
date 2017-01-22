@@ -29,13 +29,11 @@ public class OpenButtonMgr : MonoBehaviour {
                 {
                     if (powerButtonMgr.counter == 0)
                     {
-                        //TODO JUANDE PALMA
-                        print("HA MUERTO");
                         JuanDCharacterMgr.DEAD = true;
-                        //TODO Lanzar animacion de muerte
                         sangresitaScript.enabled = true;
                         sangresitaScript.Blood();
                         GameObject.FindGameObjectWithTag("JuanD").GetComponent<JuanDCharacterMgr>().PlayMuerte();
+                        GameObject.FindGameObjectWithTag("JuanD").GetComponent<JuanDCharacterMgr>().Muerte();
                     }
                     else
                     {

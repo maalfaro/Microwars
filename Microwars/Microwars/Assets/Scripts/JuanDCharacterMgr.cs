@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class JuanDCharacterMgr : MonoBehaviour {
 
     public static bool DEAD = false;
-    private string[] PATH = new string[] { "EntraCocina", "Noodles", "Agua", "RoundTable1", "RoundTable2", "Microwave", "RoundTable2", "RoundTable1", "Karate", "RoundTable1", "RoundTable2", "Microwave", "RoundTable3" };
+    private string[] PATH = new string[] { "EntraCocina", "Noodles", "Agua", "RoundTable1", "RoundTable2", "Microwave", "RoundTable2", "RoundTable1", "Karate", "RoundTable1", "RoundTable2", "Microwave", "RoundTable3", "Exit" };
     [SerializeField]
     private AudioClip[] sounds = new AudioClip[] { };
 
@@ -117,5 +117,11 @@ public class JuanDCharacterMgr : MonoBehaviour {
     public void PlayMuerte()
     {
         GetComponent<AudioSource>().PlayOneShot(sounds[6]);
+    }
+
+    public void Muerte()
+    {
+        GetComponent<Animator>().runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>("Animators/JuanDemanMuerte");
+
     }
 }
