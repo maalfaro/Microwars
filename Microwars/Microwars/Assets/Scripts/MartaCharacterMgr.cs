@@ -148,7 +148,7 @@ public class MartaCharacterMgr : MonoBehaviour
     IEnumerator Win()
     {
         yield return new WaitForSeconds(10);
-        SceneManager.LoadScene("WinStageScene");
+        SceneManager.LoadScene("WinGameScene");
     }
 
     IEnumerator RemoveText(int time)

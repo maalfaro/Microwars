@@ -5,13 +5,20 @@ using UnityEngine.SceneManagement;
 
 public class LoadSceneOnClick : MonoBehaviour
 {
-    public float animationDuration = 1.1f;
+    public float animationDuration = 0.3f;
+    public bool focus;
 
     public void LoadByIndex(int sceneIndex)
     {
         GameObject mCamera = GameObject.FindGameObjectWithTag("MainCamera");
-        mCamera.GetComponent<Animator>().SetBool("startGame", true);
-        StartCoroutine("waitForAnimationToEnd", sceneIndex);
+        mCamera.GetComponent<Animator>().enabled = true;
+        if (focus)
+        {
+            StartCoroutine("waitForAnimationToEnd", sceneIndex);
+        } else
+        {
+            SceneManager.LoadScene(sceneIndex);
+        }
     }
 
     IEnumerator waitForAnimationToEnd(int sceneIndex)

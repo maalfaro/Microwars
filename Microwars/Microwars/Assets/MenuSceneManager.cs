@@ -38,6 +38,10 @@ public class MenuSceneManager : MonoBehaviour {
     {
         canvas.SetActive(true);
         GameObject audioManager = GameObject.FindGameObjectWithTag("AudioManager");
-        audioManager.GetComponent<AudioSource>().Play();
+        AudioSource audioSource = audioManager.GetComponent<AudioSource>();
+        if (!audioSource.isPlaying)
+        {
+            audioSource.Play();
+        }
     }
 }

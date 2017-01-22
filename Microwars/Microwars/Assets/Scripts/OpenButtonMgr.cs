@@ -58,7 +58,7 @@ public class OpenButtonMgr : MonoBehaviour {
 
     IEnumerator Blood()
     {
-        yield return new WaitForSeconds(2.5f);
+        yield return new WaitForSeconds(2.2f);
         sangresitaScript.Blood();
     }
 }
