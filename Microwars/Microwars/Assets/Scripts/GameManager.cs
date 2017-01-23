@@ -25,18 +25,29 @@ public class GameManager : MonoBehaviour {
         //Activar el Canvas de juego perdido
         //Sonar
         //Volver al Menu
-        if (!JuanDCharacterMgr.DEAD ||  GameObject.FindGameObjectWithTag("JuanD").GetComponent<JuanDCharacterMgr>().state != 11)
+
+
+        if (!JuanDCharacterMgr.DEAD && GameObject.FindGameObjectWithTag("JuanD")!=null && GameObject.FindGameObjectWithTag("JuanD").GetComponent<JuanDCharacterMgr>().state != 11)
         {
             tePillaron.SetActive(true);
-            StartCoroutine("Loser");
+            StartCoroutine("LoserJuanD");
+        }else if(!MartaCharacterMgr.DEAD && GameObject.FindGameObjectWithTag("Marta")!=null && GameObject.FindGameObjectWithTag("Marta").GetComponent<MartaCharacterMgr>().state != 5) {
+            tePillaron.SetActive(true);
+            StartCoroutine("LoserMarta");
         }
-            //SceneManager.LoadScene(2);
     }
 
-    IEnumerator Loser()
+    IEnumerator LoserMarta()
     {
         yield return new WaitForSeconds(2);
         //Cargar escena perder
-        SceneManager.LoadScene("LostGameScene");
+        SceneManager.LoadScene("MartaLostGameScene");
+    }
+
+    IEnumerator LoserJuanD()
+    {
+        yield return new WaitForSeconds(2);
+        //Cargar escena perder
+        SceneManager.LoadScene("JuanDemanLostGameScene");
     }
 }

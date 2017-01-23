@@ -12,13 +12,18 @@ public class PlayMovieOnSpace : MonoBehaviour
             Renderer r = GetComponent<Renderer>();
             MovieTexture movie = (MovieTexture)r.material.mainTexture;
 
-            if (movie.isPlaying)
+            if (movie != null) { 
+                if (movie.isPlaying)
+                {
+                    movie.Pause();
+                }
+                else
+                {
+                    movie.Play();
+                }
+            }else
             {
-                movie.Pause();
-            }
-            else
-            {
-                movie.Play();
+
             }
         }
     }

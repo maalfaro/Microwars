@@ -7,7 +7,7 @@ public class MenuSceneManager : MonoBehaviour {
     public static MenuSceneManager instance;
 
     private GameObject controles;
-    private GameObject canvas;
+    public GameObject canvas;
 
     void Awake()
     {

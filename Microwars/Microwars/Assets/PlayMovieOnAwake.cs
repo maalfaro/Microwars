@@ -1,12 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayMovieOnAwake : MonoBehaviour {
 
     private GameObject video;
     private AudioClip audioClip;
     private AudioSource audioSource;
+    public Image lostImage;
 
     void Start()
     {
@@ -14,12 +16,18 @@ public class PlayMovieOnAwake : MonoBehaviour {
 
         Renderer renderer = GetComponent<Renderer>();
         MovieTexture movie = (MovieTexture)renderer.material.mainTexture;
-        audioClip = movie.audioClip;
-        audioSource = gameObject.GetComponent<AudioSource>();
-        audioSource.clip = audioClip;
-        audioSource.Play();
-        movie.Play();
-        StartCoroutine("destroyOnEnd", movie.duration);
+        if (movie != null) { 
+            audioClip = movie.audioClip;
+            audioSource = gameObject.GetComponent<AudioSource>();
+            audioSource.clip = audioClip;
+            audioSource.Play();
+            movie.Play();
+            StartCoroutine("destroyOnEnd", movie.duration);
+        }else
+        {
+            MenuSceneManager.instance.ActivateCanvas();
+            lostImage.gameObject.SetActive(true);
+        }
     }
 
     IEnumerator destroyOnEnd(float duration)
